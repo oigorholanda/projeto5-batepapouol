@@ -1,11 +1,9 @@
 .container {
-    font-style: roboto;
-    background-color: #E5E5E5;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
     width: 375px;
-    height: 1000px;
     margin: 0 auto;
     position: relative;
-    
 }
 
 .topo {
@@ -20,7 +18,7 @@
     position: fixed;
     top: 0px;
     z-index: 1;
-
+    box-shadow: 0px 5px 11px -2px rgba(0, 0, 0, 0.48);
 }
 
 .topo img {
@@ -28,34 +26,41 @@
     height: 53px;
 }
 
+img:hover {
+    cursor: pointer;
+}
+
 
 .chat {
-    margin: 90px auto;
-    position: absolute;
-    
+    background-color: #FFFFFF;
+    margin-top: 90px;
+    margin-bottom: 92px;
 }
 
 .status {
-    background-color:#DCDCDC;
+    background-color: #DCDCDC;
     padding: 8px;
     margin: 4px auto;
 }
 
 .rsv {
-    background-color:#FFDEDE ;
+    background-color: #FFDEDE;
     padding: 8px;
     margin: 4px auto;
 }
 
 .msg {
-    background-color:#FFFFFF ;
+    background-color: #FFFFFF;
     padding: 8px;
     margin: 4px auto;
 }
 
-
 span {
     color: #AAAAAA;
+}
+
+strong {
+    font-weight: 700;
 }
 
 .baixo {
@@ -65,15 +70,23 @@ span {
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    font-size: 30px;
+    font-size: 33px;
     padding: 17px;
     position: fixed;
     bottom: 0px;
-    
+    box-shadow: 0px -2px 11px -2px rgba(0, 0, 0, 0.48);
 }
 
 input {
-    border:none;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-size: 17px;
+    border: none;
     width: 300px;
     height: 50px;
 }
+
+ion-icon:hover {
+    cursor: pointer;
+}
+
