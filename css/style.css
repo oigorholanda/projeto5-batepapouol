@@ -4,6 +4,7 @@
     width: 375px;
     margin: 0 auto;
     position: relative;
+    
 }
 
 .topo {
@@ -30,6 +31,11 @@ img:hover {
     cursor: pointer;
 }
 
+.info {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
 
 .chat {
     background-color: #FFFFFF;

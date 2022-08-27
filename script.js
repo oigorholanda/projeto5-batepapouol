@@ -1,15 +1,16 @@
-let mensagens = [];
+let chat = [];
+let mensagem = [];
+let nome;
 let usuario;
-let ID;
+let onlineID;
+let ChatID;
 
 
-// setTimeout(cadastroNome, 3000);
-buscarMensagens();
+ChatID = setInterval(buscarMensagens, 5000);
 
 //Cadastra e forma o objeto com o nome de usuário
 function cadastroNome() {
-    document.querySelector('input').placeholder = 'Escreva Aqui...';
-    const nome = prompt('Informe seu nome de usuário:');
+    nome = prompt('Informe seu nome de usuário:');
     usuario = {
         name: nome
     }
@@ -35,80 +36,101 @@ Nome de usuário inválido ou já em uso, por favor escolha outro.
 
 function loginConfirmado(resposta) {
     console.log("Usuário autenticado");
-    console.log(resposta);
 
-    ID = setInterval(avisoLogado, 5000);
+    onlineID = setInterval(avisoLogado, 5000);
 }
 
 function avisoLogado() {
     const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', usuario);
-    promessa.then(userOnline); //se der tudo certo com a resposta do servidor
-    promessa.catch(ErroOnline); // ser der erro com a resposta do servidor
+    promessa.then(() => console.log("Usuário Online")); //se der tudo certo com a resposta do servidor
+    promessa.catch(() => console.log('Erro na confirmação de usuário logado')); // ser der erro com a resposta do servidor
 }
-
-function userOnline() {
-    console.log("Usuário Online");
-}
-
-function ErroOnline(erro) {
-    console.log('Erro na confirmação de usuário logado')
-    console.log(erro);
-}
-
 
 function buscarMensagens() {
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promessa.then(mostrarMensagens); //se der tudo certo com a resposta do servidor
-    promessa.catch(ErroMensagens); // ser der erro com a resposta do servidor
-
+    promessa.catch(() => console.log('Erro no download das mensagens')); // ser der erro com a resposta do servidor
 }
 
 function mostrarMensagens(resposta) {
-    console.log(resposta);
-    mensagens = resposta.data
+    chat = resposta.data
 
+    const divchat = document.querySelector('.mensagens');
+    divchat.innerHTML = "";
 
-    const chat = document.querySelector('.mensagens');
-
-
-    for (let i = 0; i < mensagens.length; i++) {
-        if (mensagens[i].type === "status") {
-            chat.innerHTML += `
-            <div class="status">
-            <span>(${mensagens[i].time})</span>
-            <strong>${mensagens[i].from}</strong> 
-            ${mensagens[i].text}
-            </div>
+    for (let i = 0; i < chat.length; i++) {
+        if (chat[i].type === "status") {
+            divchat.innerHTML += `
+            <li>
+                <div class="status">
+                <span>(${chat[i].time})</span>
+                <strong>${chat[i].from}</strong> 
+                ${chat[i].text}
+                </div>
+            </li>
             `;
         }
 
-        if (mensagens[i].type === "message") {
-            chat.innerHTML += `
-            <div class="msg">
-            <span>(${mensagens[i].time})</span>
-            <strong>${mensagens[i].from}</strong>
-            para <strong>${mensagens[i].to}</strong>: 
-            ${mensagens[i].text}
-            </div>
+        if (chat[i].type === "message") {
+            divchat.innerHTML += `
+            <li>
+                <div class="msg">
+                <span>(${chat[i].time})</span>
+                <strong>${chat[i].from}</strong>
+                para <strong>${chat[i].to}</strong>: 
+                ${chat[i].text}
+                </div>
+            </li>
             `;
         }
 
-        if (mensagens[i].type === "private_message") {
-            chat.innerHTML += `
-            <div class="rsv">
-            <span>(${mensagens[i].time})</span>
-            <strong>${mensagens[i].from}</strong>
-            para <strong>${mensagens[i].to}</strong>: 
-            ${mensagens[i].text}
-            </div>
+        if (chat[i].type === "private_message") {
+            divchat.innerHTML += `
+            <li>
+                <div class="rsv">
+                <span>(${chat[i].time})</span>
+                <strong>${chat[i].from}</strong>
+                para <strong>${chat[i].to}</strong>: 
+                ${chat[i].text}
+                </div>
+            </li>
             `;
         }
     }
+
+    const msgRecente = document.querySelector('.mensagens').lastElementChild;
+    msgRecente.scrollIntoView();
 }
 
-function ErroMensagens(erro) {
-    console.log('Erro no download das mensagens')
+
+function enviarMensagens() {
+    const texto = document.querySelector('input').value;
+    document.querySelector('input').value = '';
+
+    mensagem = {
+        from: nome,
+        to: 'Todos',
+        text: texto,
+        type: "message" // ou "private_message" para o bônus 
+    }
+
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', mensagem)
+    promessa.then(msgEnviada); //se der tudo certo com a resposta do servidor
+    promessa.catch(erroMSG); // ser der erro com a resposta do servidor
+
+}
+
+function msgEnviada() {
+    console.log('Mensagem enviada');
+
+    buscarMensagens();
+}
+
+function erroMSG(erro) {
+    console.log('Erro no upload das mensagens')
     console.log(erro);
+
+    window.location.reload();
 }
 
 

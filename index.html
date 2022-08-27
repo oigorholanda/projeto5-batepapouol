@@ -28,8 +28,10 @@
             </div>
         </div>
 
+
         <div class="chat">
             <ul class="mensagens">
+                <div class="info">⬆️ Clique na logo para entrar </div>
                 <li>
                     <div class="status">
                         <span>(09:21:45)</span>
@@ -69,13 +71,12 @@
 
         <div class="baixo">
             <div class="texto">
-                <input type="text" placeholder="⬆️ Clique na logo para entrar ">
+                <input type="text" placeholder="Escreva aqui..." onkeypress="if(event.key == 'Enter') {enviarMensagens()}">
             </div>
 
-            <div class="icone" onclick="">
+            <div class="icone" onclick="enviarMensagens()">
                 <ion-icon name="paper-plane-outline"></ion-icon>
             </div>
-
         </div>
 
     </div>
