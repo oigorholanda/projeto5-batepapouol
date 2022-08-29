@@ -19,6 +19,17 @@
 
 <body>
     <div class="container">
+
+        <div class="login">
+            <img class="logo" src="./img/logo 2.svg" alt="logoUol">
+            <img class="gif hidden" src="./img/loading.gif" alt="LoadingGIF">
+            <input type="text" placeholder="Digite seu nome de Usuário">
+            <p class="texto hidden">Entrando...</p>
+            <button onclick="cadastroNome()">Entrar</button>
+
+        </div>
+
+
         <div class="topo">
             <div class="logo">
                 <img src="./img/logo 2.svg" alt="logoUol" onclick="cadastroNome()">
@@ -31,8 +42,10 @@
 
         <div class="chat">
             <ul class="mensagens">
-                <div class="info">⬆️ Clique na logo para entrar </div>
                 <li>
+                    <h1>Carregando mensagens...</h1>
+                </li>
+                <!-- <li>
                     <div class="status">
                         <span>(09:21:45)</span>
                         <strong>João</strong> entra na sala...
@@ -63,8 +76,7 @@
                         <span>(09:22:58)</span>
                         <strong>Maria</strong> sai da sala...
                     </div>
-                </li>
-
+                </li>  -->
 
             </ul>
         </div>

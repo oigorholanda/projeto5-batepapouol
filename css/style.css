@@ -1,10 +1,80 @@
+input {
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-size: 17px;
+    border: none;
+    width: 300px;
+    height: 50px;
+}
+
+p {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
 .container {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     width: 375px;
     margin: 0 auto;
     position: relative;
-    
+    display: flex;
+    justify-content: center;
+}
+
+.login {
+    background-color: #FFFFFF;
+    width: 400px;
+    height: 90vh;
+    z-index: 2;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 70px 0px;
+}
+
+.login .logo {
+    width: 130px;
+    margin-bottom: 90px;
+}
+
+.login input {
+    width: 260px;
+    margin:15px;
+    border: 1px solid #D7D7D7;
+    border-radius: 4px;
+    font-style: normal;
+    font-size: 18px;
+    text-align: center;
+}
+
+.login button {
+    color: #696969;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    width: 109px;
+    height: 45px;
+    margin-top: 15px;
+    background: #E7E7E7;
+    border-radius: 9px;
+    transition-duration: 0.5s;
+}
+
+button:hover {
+    color: black;
+    cursor: pointer;
+    background-color: #C54F3A;
+}
+
+.hidden {
+    visibility:hidden;
 }
 
 .topo {
@@ -27,9 +97,6 @@
     height: 53px;
 }
 
-img:hover {
-    cursor: pointer;
-}
 
 .info {
     font-family: 'Roboto', sans-serif;
@@ -39,6 +106,7 @@ img:hover {
 
 .chat {
     background-color: #FFFFFF;
+    width: 375px;
     margin-top: 90px;
     margin-bottom: 92px;
 }
@@ -81,15 +149,6 @@ strong {
     position: fixed;
     bottom: 0px;
     box-shadow: 0px -2px 11px -2px rgba(0, 0, 0, 0.48);
-}
-
-input {
-    font-family: 'Roboto', sans-serif;
-    font-style: italic;
-    font-size: 17px;
-    border: none;
-    width: 300px;
-    height: 50px;
 }
 
 ion-icon:hover {

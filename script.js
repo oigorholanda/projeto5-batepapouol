@@ -6,17 +6,24 @@ let onlineID;
 let ChatID;
 
 
-ChatID = setInterval(buscarMensagens, 5000);
-
 //Cadastra e forma o objeto com o nome de usuário
 function cadastroNome() {
-    nome = prompt('Informe seu nome de usuário:');
+    const input = document.querySelector('.login input');
+    input.classList.add('hidden');
+    const botao = document.querySelector('.login button');
+    botao.classList.add('hidden');
+    const gif = document.querySelector('.login .gif');
+    gif.classList.remove('hidden');
+    const texto = document.querySelector('.login .texto');
+    texto.classList.remove('hidden');
+
+    nome = document.querySelector('.login input').value;
     usuario = {
         name: nome
     }
     entrarNaSala();
+    ChatID = setInterval(buscarMensagens, 5000);
 }
-
 
 //Requisita a autenticação do usuário
 function entrarNaSala() {
@@ -31,12 +38,13 @@ function errologin(erro) {
 Nome de usuário inválido ou já em uso, por favor escolha outro.
         `);
     }
-    cadastroNome();
+    window.location.reload();
 }
 
 function loginConfirmado(resposta) {
     console.log("Usuário autenticado");
-
+    const libera = document.querySelector('.login');
+    libera.classList.add('hidden');
     onlineID = setInterval(avisoLogado, 5000);
 }
 
@@ -104,8 +112,8 @@ function mostrarMensagens(resposta) {
 
 
 function enviarMensagens() {
-    const texto = document.querySelector('input').value;
-    document.querySelector('input').value = '';
+    const texto = document.querySelector('.texto input').value;
+    document.querySelector('.texto input').value = '';
 
     mensagem = {
         from: nome,
