@@ -1,10 +1,13 @@
 input {
     font-family: 'Roboto', sans-serif;
-    font-style: italic;
     font-size: 17px;
     border: none;
     width: 300px;
     height: 50px;
+}
+
+input::placeholder {
+    font-style: italic;
 }
 
 p {
@@ -13,7 +16,9 @@ p {
 }
 
 h1 {
-    font-size: 22px;
+    margin-top: 15vh;
+    margin-bottom: 22vh;
+    font-size: 21px;
     font-weight: 600;
 }
 
@@ -97,18 +102,12 @@ button:hover {
     height: 53px;
 }
 
-
-.info {
-    font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    text-align: center;
-}
-
 .chat {
     background-color: #FFFFFF;
     width: 375px;
     margin-top: 90px;
     margin-bottom: 92px;
+    overflow-x: hidden;
 }
 
 .status {

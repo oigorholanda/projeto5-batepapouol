@@ -22,7 +22,7 @@ function cadastroNome() {
         name: nome
     }
     entrarNaSala();
-    ChatID = setInterval(buscarMensagens, 5000);
+    ChatID = setInterval(buscarMensagens, 3000);
 }
 
 //Requisita a autenticação do usuário
@@ -138,7 +138,9 @@ function erroMSG(erro) {
     console.log('Erro no upload das mensagens')
     console.log(erro);
 
-    window.location.reload();
+    if(confirm("Erro no envio de mensagens, deseja recarregar a pagina?")){
+        window.location.reload();
+    };
 }
 
 
