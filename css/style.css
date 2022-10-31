@@ -34,14 +34,14 @@ h1 {
 
 .login {
     background-color: #FFFFFF;
-    width: 400px;
-    height: 90vh;
-    z-index: 2;
+    width: 600px;
+    height: 100vh;
+    z-index: 3;
     position: absolute;
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 70px 0px;
+    padding: 80px 0px;
 }
 
 .login .logo {
@@ -60,22 +60,27 @@ h1 {
 }
 
 .login button {
+    font-family: Arial;
     color: #696969;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: bold;
     border: none;
     width: 109px;
     height: 45px;
     margin-top: 15px;
     background: #E7E7E7;
     border-radius: 9px;
-    transition-duration: 0.5s;
+    transition-duration: 0.6s;
 }
 
-button:hover {
-    color: black;
+.login .habilitado {
+    box-shadow: inset 0px 1px 0px 0px #f5978e;
+    background: linear-gradient(to bottom, #dd493f 5%, #c62d1f 100%);
+    background-color: #e78e45;
+    color:#ffffff;
+    text-shadow:0px 1px 0px #810e05;
+	font-family: Arial;
     cursor: pointer;
-    background-color: #C54F3A;
 }
 
 .hidden {
@@ -108,6 +113,7 @@ button:hover {
     margin-top: 90px;
     margin-bottom: 92px;
     overflow-x: hidden;
+    word-wrap: break-word;
 }
 
 .status {
