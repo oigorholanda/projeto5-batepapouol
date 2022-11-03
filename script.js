@@ -1,33 +1,41 @@
 let chat = [];
-let chatOld = [];
 let mensagem = [];
+let msgOld;
 let nome;
 let usuario;
 let onlineID;
 let ChatID;
+let botao;
 
 //desabilita o botão no início
-document.getElementById("botao").disabled = true;
+botao = document.getElementById("botao")
+botao.disabled = true;
 
 //cria um event listener para o input
-document.getElementById("input").addEventListener("input", function(event){
-    
-  //busca conteúdo do input
+document.getElementById("input").addEventListener("input", function (event) {
+
+    //busca conteúdo do input
     var conteudo = document.getElementById("input").value;
-  
+
     //valida conteudo do input 
     if (conteudo !== null && conteudo !== '') {
-      //habilita o botão
-      document.getElementById("botao").disabled = false;
-      const botao = document.querySelector('.login button');
-      botao.classList.add('habilitado');
+        //habilita o botão
+        botao.disabled = false;
+        botao.classList.add('habilitado');
     } else {
-      //desabilita o botão se o conteúdo do input ficar em branco
-      document.getElementById("botao").disabled = true;
-      const botao = document.querySelector('.login button');
-      botao.classList.remove('habilitado');
+        //desabilita o botão se o conteúdo do input ficar em branco
+        botao.disabled = true;
+        botao.classList.remove('habilitado');
     }
 });
+
+function toggleMenu() {
+    const fundo = document.querySelector('.lateral');
+    const menu = document.querySelector('.menu')
+
+    fundo.classList.toggle('hidden');
+    menu.classList.toggle('hidden');
+}
 
 //Cadastra e forma o objeto com o nome de usuário
 function cadastroNome() {
@@ -87,58 +95,58 @@ function buscarMensagens() {
 function mostrarMensagens(resposta) {
     chat = resposta.data
 
-    if (chat !== chatOld) {
+    const divchat = document.querySelector('.mensagens');
+    divchat.innerHTML = "";
 
-        console.log(chatOld);
-        console.log(chat);
-        const divchat = document.querySelector('.mensagens');
-        divchat.innerHTML = "";
-
-        for (let i = 0; i < chat.length; i++) {
-            if (chat[i].type === "status") {
-                divchat.innerHTML += `
-            <li>
+    for (let i = 0; i < chat.length; i++) {
+        if (chat[i].type === "status") {
+            divchat.innerHTML += `
+            <li data-test="message">
                 <div class="status">
-                <span>(${chat[i].time})</span>
-                <strong>${chat[i].from}</strong> 
-                ${chat[i].text}
+                    <span>(${chat[i].time})</span>
+                    <strong>${chat[i].from}</strong> 
+                    ${chat[i].text}
                 </div>
             </li>
             `;
-            }
-
-            if (chat[i].type === "message") {
-                divchat.innerHTML += `
-            <li>
-                <div class="msg">
-                <span>(${chat[i].time})</span>
-                <strong>${chat[i].from}</strong>
-                para <strong>${chat[i].to}</strong>: 
-                ${chat[i].text}
-                </div>
-            </li>
-            `;
-            }
-
-            if (chat[i].type === "private_message") {
-                divchat.innerHTML += `
-            <li>
-                <div class="rsv">
-                <span>(${chat[i].time})</span>
-                <strong>${chat[i].from}</strong>
-                para <strong>${chat[i].to}</strong>: 
-                ${chat[i].text}
-                </div>
-            </li>
-            `;
-            }
         }
 
-        chatOld = chat;
-        const msgRecente = document.querySelector('.mensagens').lastElementChild;
+        if (chat[i].type === "message") {
+            divchat.innerHTML += `
+            <li data-test="message">
+                <div class="msg">
+                    <span>(${chat[i].time})</span>
+                    <strong>${chat[i].from}</strong>
+                    para <strong>${chat[i].to}</strong>: 
+                    ${chat[i].text}
+                </div>
+            </li>
+            `;
+        }
+
+        if (chat[i].type === "private_message") {
+            divchat.innerHTML += `
+            <li data-test="message">
+                <div class="rsv">
+                    <span>(${chat[i].time})</span>
+                    <strong>${chat[i].from}</strong>
+                    reservadamente para 
+                    <strong>${chat[i].to}</strong>: 
+                    ${chat[i].text}
+                </div>
+            </li>
+            `;
+        }
+    }
+
+    const msgRecente = divchat.lastElementChild;
+    if (msgOld !== msgRecente) {
         msgRecente.scrollIntoView();
         
-    }
+        console.log(msgRecente);
+
+    } 
+
 }
 
 

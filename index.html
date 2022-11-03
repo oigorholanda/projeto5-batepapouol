@@ -23,20 +23,20 @@
         <div class="login">
             <img class="logo" src="./img/logo 2.svg" alt="logoUol">
             <img class="gif hidden" src="./img/loading.gif" alt="LoadingGIF">
-            <input id="input" type="text" placeholder="Digite seu nome de usuário">
+            <input data-test="input-name" id="input" type="text" placeholder="Digite seu nome de usuário" autofocus>
             <p class="texto hidden">Entrando...</p>
-            <button id="botao" onclick="cadastroNome()">Entrar</button>
+            <button data-test="send-name" id="botao" onclick="cadastroNome()">Entrar</button>
         </div>
 
-        <div class="lateral"></div>
+        <div class="lateral hidden" onclick="toggleMenu()"></div>
 
 
         <div class="topo">
             <div class="logo">
                 <img src="./img/logo 2.svg" alt="logoUol">
             </div>
-            <div class="icone">
-                <ion-icon name="people" alt="Pessoas"></ion-icon>
+            <div class="icone" onclick="toggleMenu()" data-test="open-participants">
+                <ion-icon name="people" alt="Icone Usuários"></ion-icon>
             </div>
         </div>
 
@@ -84,13 +84,61 @@
 
         <div class="baixo">
             <div class="texto">
-                <input type="text" placeholder="Escreva aqui..." onkeypress="if(event.key == 'Enter') {enviarMensagens()}">
+                <input type="text" placeholder="Escreva aqui..."
+                    onkeypress="if(event.key == 'Enter') {enviarMensagens()}" data-test="input-message">
             </div>
 
-            <div class="icone" onclick="enviarMensagens()">
+            <div class="icone" onclick="enviarMensagens()" data-test="send-message">
                 <ion-icon name="paper-plane-outline"></ion-icon>
             </div>
         </div>
+
+        <aside class="menu hidden">
+            <div class="participantes">
+                <ul>  Escolha um contato para enviar a mensagem:
+                    <li data-test="all" onclick="selecionarParticipante()">
+                        <ion-icon>people</ion-icon>
+                        Todos
+                        <ion-icon data-test="check">check</ion-icon>
+                    </li>
+                    <li data-test="participant" onclick="selecionarParticipante()">
+                        <ion-icon>user</ion-icon>
+                        Usuário 1
+                        <ion-icon data-test="check">check</ion-icon>
+                    </li>
+                    <li data-test="participant" onclick="selecionarParticipante()">
+                        <ion-icon>user</ion-icon>
+                        Usuário 2
+                        <ion-icon data-test="check">check</ion-icon>
+                    </li>
+                    <li data-test="participant" onclick="selecionarParticipante()">
+                        <ion-icon>user</ion-icon>
+                        Usuário 3
+                        <ion-icon data-test="check">check</ion-icon>
+                    </li>
+                    <li data-test="participant" onclick="selecionarParticipante()">
+                        <ion-icon>user</ion-icon>
+                        Usuário 4
+                        <ion-icon data-test="check">check</ion-icon>
+                    </li>
+                </ul>
+            </div>
+            <div class="tipo">
+                <ul> Escolha a Visibilidade:
+                    <li data-test="public" onclick="selecionarTipo()">
+                        <ion-icon>user</ion-icon>
+                        Publico
+                        <ion-icon data-test="check">check</ion-icon>
+                    </li>
+                    <li data-test="private" onclick="selecionarTipo()">
+                        <ion-icon>user</ion-icon>
+                        Reservadamente
+                        <ion-icon data-test="check">check</ion-icon>
+                    </li>
+                </ul>
+            </div>
+            </ul>
+        </aside>
 
     </div>
 

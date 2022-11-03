@@ -35,7 +35,7 @@ h1 {
 .login {
     background-color: #FFFFFF;
     width: 600px;
-    height: 100vh;
+    height: 110vh;
     z-index: 3;
     position: absolute;
     display: flex;
@@ -158,5 +158,32 @@ strong {
 
 ion-icon:hover {
     cursor: pointer;
+}
+
+.lateral {
+    background-color: rgba(0, 0, 0, 0.507);
+    width: 500px;
+    height: 100%;
+    position: fixed;
+    z-index: 2;
+    top:0;
+    left: 0;
+    transition: all 150ms linear;
+}
+
+.menu {
+    background-color: white;
+    width: 61%;
+    height: 100%;
+    z-index: 3;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    transition: all 200ms linear;
+    margin-top: 20px;
+}
+
+.menu.hidden {
+    right: -210px;
 }
 
